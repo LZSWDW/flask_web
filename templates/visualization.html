@@ -29,13 +29,13 @@
 
 <body>
 
-    <!-- Preloader Start -->
+    <!-- 预加载画面 -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="static/assets/img/logo/logo.png" alt="">
+                    <img src="static/assets/img/logo/preload.png" alt="">
                 </div>
             </div>
         </div>
@@ -83,47 +83,53 @@
     </header>
 
 
+	<!-- 标题 -->
 	<div class="services-area">
 		<div class="container">
-			<!-- Section-tittle -->
 			<div class="row d-flex justify-content-center">
 				<div class="col-lg-8">
 					<div class="section-tittle text-center mb-80">
-						<h2>Ouer Element​</h2>
+						<h2>Data Visualization​</h2>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Slider Area End-->
 
-	<!-- Start Sample Area -->
+
+	<!-- 声明 -->
 	<section class="sample-text-area">
 		<div class="container box_1170">
-			<h3 class="text-heading">Text Sample</h3>
+            <!-- 小标题 -->
+			<h3 class="text-heading">Statement</h3>
+			<!-- 文本内容 -->
+			<!-- <b>加粗</b><i>斜体</i><sup>上标</sup><sub>下标</sub><del>中划线</del><u>下划线</u> -->
 			<p class="sample-text">
-				Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary,
-				or short
-				film to show off their creative prowess. Many have great ideas and want to “wow”
-				the<sup>Superscript</sup> scene,
-				or video renters with their big project. But once you have the<sub>Subscript</sub> “in the can” (no easy
-				feat), how
-				do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked
-				hand-written title
-				inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC
-				barcodes
-				and polywrap sitting on your doorstep? You need to create eye-popping artwork and have your project
-				replicated.
-				Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is
-				certainly a
-				helpful option to ensure a professional end result, but to help with your DVD replication project, here
-				are 4 easy
-				steps to follow for good DVD replication results:
-
+				The data comes from web sites with <b>public dataset</b> or developers <b>legally</b> use python crawlers to obtain them on the Internet.
 			</p>
 		</div>
 	</section>
-	<!-- End Sample Area -->
+
+
+	<!--可视化-->
+	<div class="whole-wrap">
+		<div class="container">
+			<div class="section-top-border">
+				<h3 class="mb-30">Test</h3>
+					<div class="row">
+						<div class="col-md-3">
+							<p>
+								This is a section for testing.test test test test test test test test test test test test test
+							</p>
+						</div>
+					<div class="col-md-9 mt-sm-20">
+						<div id="test" style="width: 100%;height: 400px ;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- Start Button -->
 	<section class="button-area">
@@ -836,6 +842,69 @@
 	</footer>
 <!-- JS here -->
 
+	<script src="./static/assets/js/echarts.min.js"></script>
+	<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('test'));
+
+        // 指定图表的配置项和数据
+        var data = [];
+        for (let i = 0; i < 5; ++i) {
+            data.push(Math.round(Math.random() * 200));
+        }
+
+
+        option = {
+            xAxis: {
+                max: 'dataMax',
+            },
+            yAxis: {
+                type: 'category',
+                data: ['A', 'B', 'C', 'D', 'E'],
+                inverse: true,
+                animationDuration: 300,
+                animationDurationUpdate: 300,
+                max: 3 // only the largest 3 bars will be displayed
+            },
+            series: [{
+                realtimeSort: true,
+                name: 'X',
+                type: 'bar',
+                data: data,
+                label: {
+                    show: true,
+                    position: 'right',
+                    valueAnimation: true
+                }
+            }],
+            legend: {
+                show: true
+            },
+            animationDuration: 0,
+            animationDurationUpdate: 3000,
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear'
+        };
+
+        function run() {
+            var data = option.series[0].data;
+            for (var i = 0; i < data.length; ++i) {
+                if (Math.random() > 0.9) {
+                    data[i] += Math.round(Math.random() * 2000);
+                } else {
+                    data[i] += Math.round(Math.random() * 200);
+                }
+            }
+            myChart.setOption(option);
+        }
+
+        setTimeout(function () {
+            run();
+        }, 0);
+        setInterval(function () {
+            run();
+        }, 3000);
+    </script>
 		<!-- All JS Custom Plugins Link Here here -->
         <script src="./static/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 
