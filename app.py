@@ -28,21 +28,6 @@ def blog():
     return render_template("blog.html")
 
 
-@app.route('/elements')
-def elements():
-    return render_template("elements.html")
-
-
-@app.route('/pricing')
-def pricing():
-    return render_template("pricing.html")
-
-
-@app.route('/services')
-def services():
-    return render_template("services.html")
-
-
 @app.route('/single-blog')
 def single_blog():
     return render_template("single-blog.html")
