@@ -130,18 +130,38 @@
 		</div>
 	</div>
 
+	<!--天气折线图-->
 	<div class="whole-wrap">
 		<div class="container">
 			<div class="section-top-border">
-				<h3 class="mb-30">Test</h3>
+				<h3 class="mb-30">温度折线图</h3>
 					<div class="row">
 						<div class="col-md-3">
 							<p>
-								Test No.2
+								深色模式
 							</p>
 						</div>
 					<div class="col-md-9 mt-sm-20">
-						<div id="test1" style="width: 100%;height: 400px ;"></div>
+						<div id="test_weather" style="width: 100%;height: 400px ;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--PCR 节奏榜-->
+	<div class="whole-wrap">
+		<div class="container">
+			<div class="section-top-border">
+				<h3 class="mb-30">PCR 节奏榜</h3>
+					<div class="row">
+						<div class="col-md-3">
+							<p>
+								PCR国服
+							</p>
+						</div>
+					<div class="col-md-9 mt-sm-20">
+						<div id="pcr_rank" style="width: 100%;height: 400px ;"></div>
 					</div>
 				</div>
 			</div>
@@ -925,10 +945,9 @@
     </script>
 
 	<script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var Weather = echarts.init(document.getElementById('test1'));
+        var weather_chart = echarts.init(document.getElementById('test_weather'), 'dark');
 
-		option1 = {
+		option_weather = {
 			title: {
 				text: '未来一周气温变化',
 				subtext: '纯属虚构'
@@ -1009,8 +1028,52 @@
 				}
 			]
 		};
-		Weather.setOption(option1);
+		weather_chart.setOption(option_weather);
     </script>
+
+	<script type="text/javascript">
+        var pcr_rank = echarts.init(document.getElementById('pcr_rank'));
+
+        option_pcr = {
+		legend: {
+			top: 'bottom'
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				mark: {show: true},
+				dataView: {show: true, readOnly: false},
+				restore: {show: true},
+				saveAsImage: {show: true}
+			}
+		},
+		series: [
+			{
+				name: '面积模式',
+				type: 'pie',
+				radius: [50, 150],
+				center: ['50%', '50%'],
+				roseType: 'area',
+				itemStyle: {
+					borderRadius: 8
+				},
+				data: [
+					{value: 40, name: '水电'},
+					{value: 38, name: '狼'},
+					{value: 32, name: '克'},
+					{value: 30, name: 'xcw'},
+					{value: 28, name: '病'},
+					{value: 26, name: '511'},
+					{value: 22, name: '水黑'},
+					{value: 18, name: '狗拳'}
+				]
+			}
+		]
+	};
+
+	pcr_rank.setOption(option_pcr);
+    </script>
+
 		<!-- All JS Custom Plugins Link Here here -->
         <script src="./static/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 
