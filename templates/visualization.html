@@ -134,11 +134,11 @@
 	<div class="whole-wrap">
 		<div class="container">
 			<div class="section-top-border">
-				<h3 class="mb-30">温度折线图</h3>
+				<h3 class="mb-30">Temp. Prediction</h3>
 					<div class="row">
 						<div class="col-md-3">
 							<p>
-								深色模式
+								The chart shows the temperature prediction for a week.
 							</p>
 						</div>
 					<div class="col-md-9 mt-sm-20">
@@ -181,6 +181,25 @@
 						</div>
 					<div class="col-md-9 mt-sm-20">
 						<div id="water_content" style="width: 100%;height: 400px ;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--速度表-->
+	<div class="whole-wrap">
+		<div class="container">
+			<div class="section-top-border">
+				<h3 class="mb-30">速度表</h3>
+					<div class="row">
+						<div class="col-md-3">
+							<p>
+								速度50迈，心情是自由自在
+							</p>
+						</div>
+					<div class="col-md-9 mt-sm-20">
+						<div id="speedometer" style="width: 100%;height: 400px ;"></div>
 					</div>
 				</div>
 			</div>
@@ -968,14 +987,14 @@
 
 		option_weather = {
 			title: {
-				text: '未来一周气温变化',
-				subtext: '纯属虚构'
+				text: 'Temperature Prediction for Next Week',
+				subtext: 'Not applicable for real life situation'
 			},
 			tooltip: {
 				trigger: 'axis'
 			},
 			legend: {
-				data: ['最高气温', '最低气温']
+				data: ['Max Temp.', 'Min Temp.']
 			},
 			toolbox: {
 				show: true,
@@ -992,7 +1011,7 @@
 			xAxis: {
 				type: 'category',
 				boundaryGap: false,
-				data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+				data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 			},
 			yAxis: {
 				type: 'value',
@@ -1002,33 +1021,33 @@
 			},
 			series: [
 				{
-					name: '最高气温',
+					name: 'Max Temp.',
 					type: 'line',
 					data: [10, 11, 13, 11, 12, 12, 9],
 					markPoint: {
 						data: [
-							{type: 'max', name: '最大值'},
-							{type: 'min', name: '最小值'}
+							{type: 'max', name: 'Maximum'},
+							{type: 'min', name: 'Minimum'}
 						]
 					},
 					markLine: {
 						data: [
-							{type: 'average', name: '平均值'}
+							{type: 'average', name: 'Average'}
 						]
 					}
 				},
 				{
-					name: '最低气温',
+					name: 'Min Temp.',
 					type: 'line',
 					data: [1, -2, 2, 5, 3, 2, 0],
 					markPoint: {
 						data: [
-							{name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+							{name: 'Minimum in this week', value: -2, xAxis: 1, yAxis: -1.5}
 						]
 					},
 					markLine: {
 						data: [
-							{type: 'average', name: '平均值'},
+							{type: 'average', name: 'Average'},
 							[{
 								symbol: 'none',
 								x: '90%',
@@ -1037,10 +1056,10 @@
 								symbol: 'circle',
 								label: {
 									position: 'start',
-									formatter: '最大值'
+									formatter: 'Maximum'
 								},
 								type: 'max',
-								name: '最高点'
+								name: 'Peak Point'
 							}]
 						]
 					}
@@ -1091,6 +1110,29 @@
 	};
 
 	pcr_rank.setOption(option_pcr);
+    </script>
+
+	<script type="text/javascript">
+        var speedometer = echarts.init(document.getElementById('speedometer'));
+
+        option_speed = {
+			tooltip: {
+				formatter: '{a} <br/>{b} : {c}%'
+			},
+			series: [{
+				name: 'Speed',
+				type: 'gauge',
+				detail: {
+					formatter: '{value}'
+				},
+				data: [{
+					value: 50,
+					name: 'MPH'
+				}]
+			}]
+		};
+
+		speedometer.setOption(option_speed);
     </script>
 
 	<script type="text/javascript">
